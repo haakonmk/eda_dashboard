@@ -1,0 +1,173 @@
+[
+ {
+   "Date": "2/24/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15512,
+   "SAA_Dose_mGy_d": 0.08237,
+   "Total_Dose_mGy_d": 0.23749,
+   "Mission_Milestone": "animal_transfer_to_ISS"
+ },
+ {
+   "Date": "2/25/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.1623,
+   "SAA_Dose_mGy_d": 0.08609,
+   "Total_Dose_mGy_d": 0.24839,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "2/26/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15557,
+   "SAA_Dose_mGy_d": 0.09716,
+   "Total_Dose_mGy_d": 0.25273,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "2/27/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15847,
+   "SAA_Dose_mGy_d": 0.08023,
+   "Total_Dose_mGy_d": 0.2387,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "2/28/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15486,
+   "SAA_Dose_mGy_d": 0.0817,
+   "Total_Dose_mGy_d": 0.23656,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/1/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.157,
+   "SAA_Dose_mGy_d": 0.09177,
+   "Total_Dose_mGy_d": 0.24877,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/2/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15808,
+   "SAA_Dose_mGy_d": 0.07576,
+   "Total_Dose_mGy_d": 0.23384,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/3/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15733,
+   "SAA_Dose_mGy_d": 0.08272,
+   "Total_Dose_mGy_d": 0.24005,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/4/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.16124,
+   "SAA_Dose_mGy_d": 0.09427,
+   "Total_Dose_mGy_d": 0.25551,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/5/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.16435,
+   "SAA_Dose_mGy_d": 0.08031,
+   "Total_Dose_mGy_d": 0.24466,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/6/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15474,
+   "SAA_Dose_mGy_d": 0.07789,
+   "Total_Dose_mGy_d": 0.23263,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/7/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.1543,
+   "SAA_Dose_mGy_d": 0.09155,
+   "Total_Dose_mGy_d": 0.24585,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/8/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15842,
+   "SAA_Dose_mGy_d": 0.08256,
+   "Total_Dose_mGy_d": 0.24098,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/9/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15647,
+   "SAA_Dose_mGy_d": 0.08116,
+   "Total_Dose_mGy_d": 0.23763,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/10/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15637,
+   "SAA_Dose_mGy_d": 0.07739,
+   "Total_Dose_mGy_d": 0.23376,
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "3/11/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15996,
+   "SAA_Dose_mGy_d": 0.08679,
+   "Total_Dose_mGy_d": 0.24675,
+   "Mission_Milestone": "sac1"
+ },
+ {
+   "Date": "3/12/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15958,
+   "SAA_Dose_mGy_d": 0.07688,
+   "Total_Dose_mGy_d": 0.23646,
+   "Mission_Milestone": "sac2"
+ },
+ {
+   "Date": "3/13/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15498,
+   "SAA_Dose_mGy_d": 0.09783,
+   "Total_Dose_mGy_d": 0.25281,
+   "Mission_Milestone": "sac3"
+ },
+ {
+   "Date": "3/14/17",
+   "Instrument": "REM",
+   "Location": "LAB1O3",
+   "GCR_Dose_mGy_d": 0.15923,
+   "SAA_Dose_mGy_d": 0.08027,
+   "Total_Dose_mGy_d": 0.2395,
+   "Mission_Milestone": "sac4"
+ }
+]

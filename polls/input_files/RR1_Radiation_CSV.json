@@ -1,0 +1,353 @@
+[
+ {
+   "Date": "9/21/14",
+   "GCR_Dose_mGy_d": 0.13395,
+   "SAA_Dose_mGy_d": 0.07158,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20553,
+   "FIELD6": "",
+   "Mission_Milestone": "Launch"
+ },
+ {
+   "Date": "9/22/14",
+   "GCR_Dose_mGy_d": 0.13334,
+   "SAA_Dose_mGy_d": 0.09724,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.23058,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "9/23/14",
+   "GCR_Dose_mGy_d": 0.13589,
+   "SAA_Dose_mGy_d": 0.0636,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.19949,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "9/24/14",
+   "GCR_Dose_mGy_d": 0.13587,
+   "SAA_Dose_mGy_d": 0.08783,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.2237,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "9/25/14",
+   "GCR_Dose_mGy_d": 0.13334,
+   "SAA_Dose_mGy_d": 0.07607,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20941,
+   "FIELD6": "",
+   "Mission_Milestone": "Transfer to ISS"
+ },
+ {
+   "Date": "9/26/14",
+   "GCR_Dose_mGy_d": 0.13479,
+   "SAA_Dose_mGy_d": 0.07656,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.21135,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "9/27/14",
+   "GCR_Dose_mGy_d": 0.13638,
+   "SAA_Dose_mGy_d": 0.06999,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20637,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "9/28/14",
+   "GCR_Dose_mGy_d": 0.13103,
+   "SAA_Dose_mGy_d": 0.06763,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.19866,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "9/29/14",
+   "GCR_Dose_mGy_d": 0.13104,
+   "SAA_Dose_mGy_d": 0.0775,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20854,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "9/30/14",
+   "GCR_Dose_mGy_d": 0.12895,
+   "SAA_Dose_mGy_d": 0.07232,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20127,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/1/14",
+   "GCR_Dose_mGy_d": 0.12622,
+   "SAA_Dose_mGy_d": 0.08208,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.2083,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/2/14",
+   "GCR_Dose_mGy_d": 0.12559,
+   "SAA_Dose_mGy_d": 0.07807,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20366,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/3/14",
+   "GCR_Dose_mGy_d": 0.12619,
+   "SAA_Dose_mGy_d": 0.08836,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.21455,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/4/14",
+   "GCR_Dose_mGy_d": 0.13215,
+   "SAA_Dose_mGy_d": 0.08022,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.21237,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/5/14",
+   "GCR_Dose_mGy_d": 0.1255,
+   "SAA_Dose_mGy_d": 0.09024,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.21574,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/6/14",
+   "GCR_Dose_mGy_d": 0.1252,
+   "SAA_Dose_mGy_d": 0.08786,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.21306,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/7/14",
+   "GCR_Dose_mGy_d": 0.12639,
+   "SAA_Dose_mGy_d": 0.07508,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20147,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/8/14",
+   "GCR_Dose_mGy_d": 0.13039,
+   "SAA_Dose_mGy_d": 0.07116,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20155,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/9/14",
+   "GCR_Dose_mGy_d": 0.13204,
+   "SAA_Dose_mGy_d": 0.06182,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.19386,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/10/14",
+   "GCR_Dose_mGy_d": 0.13037,
+   "SAA_Dose_mGy_d": 0.07148,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20185,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/11/14",
+   "GCR_Dose_mGy_d": 0.13163,
+   "SAA_Dose_mGy_d": 0.07236,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20399,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/12/14",
+   "GCR_Dose_mGy_d": 0.13024,
+   "SAA_Dose_mGy_d": 0.07641,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20665,
+   "FIELD6": "",
+   "Mission_Milestone": "Sac 1"
+ },
+ {
+   "Date": "10/13/14",
+   "GCR_Dose_mGy_d": 0.12816,
+   "SAA_Dose_mGy_d": 0.07807,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20623,
+   "FIELD6": "",
+   "Mission_Milestone": "Sac 2"
+ },
+ {
+   "Date": "10/14/14",
+   "GCR_Dose_mGy_d": 0.13105,
+   "SAA_Dose_mGy_d": 0.07222,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20327,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/15/14",
+   "GCR_Dose_mGy_d": 0.13302,
+   "SAA_Dose_mGy_d": 0.0623,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.19532,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/16/14",
+   "GCR_Dose_mGy_d": 0.1338,
+   "SAA_Dose_mGy_d": 0.06901,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20281,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/17/14",
+   "GCR_Dose_mGy_d": 0.13824,
+   "SAA_Dose_mGy_d": 0.06771,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20595,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/18/14",
+   "GCR_Dose_mGy_d": 0.13892,
+   "SAA_Dose_mGy_d": 0.07151,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.21043,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/19/14",
+   "GCR_Dose_mGy_d": 0.13606,
+   "SAA_Dose_mGy_d": 0.05955,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.19561,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/20/14",
+   "GCR_Dose_mGy_d": 0.13494,
+   "SAA_Dose_mGy_d": 0.05923,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.19417,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/21/14",
+   "GCR_Dose_mGy_d": 0.13305,
+   "SAA_Dose_mGy_d": 0.06037,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.19342,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/22/14",
+   "GCR_Dose_mGy_d": 0.13312,
+   "SAA_Dose_mGy_d": 0.06493,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.19805,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/23/14",
+   "GCR_Dose_mGy_d": 0.13188,
+   "SAA_Dose_mGy_d": 0.06312,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.195,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/24/14",
+   "GCR_Dose_mGy_d": 0.13155,
+   "SAA_Dose_mGy_d": 0.06559,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.19714,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/25/14",
+   "GCR_Dose_mGy_d": 0.1261,
+   "SAA_Dose_mGy_d": 0.07157,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.19767,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/26/14",
+   "GCR_Dose_mGy_d": 0.12865,
+   "SAA_Dose_mGy_d": 0.07339,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20204,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/27/14",
+   "GCR_Dose_mGy_d": 0.12773,
+   "SAA_Dose_mGy_d": 0.07671,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20444,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ },
+ {
+   "Date": "10/28/14",
+   "GCR_Dose_mGy_d": 0.12519,
+   "SAA_Dose_mGy_d": 0.07499,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.20018,
+   "FIELD6": "",
+   "Mission_Milestone": "Sac 3"
+ },
+ {
+   "Date": "10/29/14",
+   "GCR_Dose_mGy_d": 0.12689,
+   "SAA_Dose_mGy_d": 0.06249,
+   "FIELD4": "",
+   "Total_Dose_mGy_d": 0.18938,
+   "FIELD6": "",
+   "Mission_Milestone": ""
+ }
+]
