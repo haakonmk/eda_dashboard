@@ -29,7 +29,7 @@ df_eda = pd.read_json(path + '{}_CSV.json'.format(mission.item()))
 light_listInit = [key for key in df_eda.keys() if key[0:3] == 'Lig']
 default_options = [{"label": light , "value": light} for light in light_listInit]
 
-
+#hfaifhih
 # Callback connects the Dash components to Plotly graphs
 
 col = dbc.Col(html.Div([
