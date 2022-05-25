@@ -190,7 +190,6 @@ def update_homescreen(json_data, chklst_milst_val, chklst_lights_val):
         chklst_lights_val = []
         light_output_string = html.Strong('')
         options = []
-    print('light_list : {}'.format(light_list))
     fig1 = px.line(data_frame=df_eda, x='Controller_Time_GMT', y=['Temp_degC_Ground', 'Temp_degC_ISS'], template='plotly_dark')
     fig1.update_xaxes(nticks=10)
     fig1.update_layout(title_text='Temperature', title_x=0.5,
