@@ -95,9 +95,6 @@ def clean_data(mission_id):
                     df_launch['Total_Dose_mGy_d'].values, df_launch['Accumulated_Radiation'].values])}
     return mission_dict
 
-
-
-
 @app.callback(
     [Output("store_selected_values", "data"),
     Output("dataframe", "data")],

@@ -23,6 +23,12 @@ mission_info = pd.read_csv(path + "mission_info.csv")
 mission_slctd = 'Rodent Research 1 (SpaceX-4)'
 mission = mission_info[mission_info['Title'] == mission_slctd]['Mission']
 df_eda = pd.read_json(path + '{}_CSV.json'.format(mission.item()))
+df_rad = pd.read_json(path + '{}_Radiation_CSV.json'.format(mission.item()))
+
+
+df_eda_init = pd.read_json(path + '{}_CSV.json'.format(mission.item()))
+df_rad_init = pd.read_json(path + '{}_Radiation_CSV.json'.format(mission.item()))
+
 #radiation_files = sorted(glob.glob(path + "RR*_Ra*_CSV.json"), key=numericalSort)
 #eda_files = sorted(glob.glob(path + "RR?_CSV.json"), key=numericalSort)
 light_listInit = [key for key in df_eda.keys() if key[0:3] == 'Lig']
@@ -37,7 +43,7 @@ col = dbc.Col(html.Div([
                      value='Rodent Research 1 (SpaceX-4)',
                      multi=False,
                      style={'width': "60%", 'justify-content': 'center'},
-                     ),
+                     ), html.H5(id = 'data_availability_eda'),
         html.Div(children=html.Strong('Mission Description'), style = {'textAlign' : 'center', 'backgroundColor': '#c2ccd6'}),
         html.Div(id='mission_description', children=[], style = {'textAlign' : 'left', 'backgroundColor': '#f0f2f5'}), #e1e5ea
         #html.Div(id='mission_description', children=[]),
@@ -128,7 +134,8 @@ app.layout = html.Div(
         html.Br(),
         dbc.Row([colMission, col4]),# justify="center"),
         html.Br(),
-        html.H4(children='Radiation Data'),
+        html.H3(children='Radiation Data'),
+        html.H5(id = 'data_availability_rad'),
         dbc.Row([col1_rad, col2_rad, col3_rad]),
         html.Br(),
         dbc.Row([col4_rad, col5_rad ]),
@@ -138,25 +145,51 @@ app.layout = html.Div(
 )
 
 
+# Checks the data availability
+
+def load_data(mission, radiation = False):
+    try:
+        if radiation:
+            df = pd.read_json(path + '{}_Radiation_CSV.json'.format(mission.item()))
+        else:
+            df = pd.read_json(path + '{}_CSV.json'.format(mission.item()))
+        return df, ""
+    except ValueError:
+        if radiation:
+            df = df_rad_init.copy()
+        else:
+            df = df_eda_init.copy()
+        for col in df.columns:
+            df[col].values[:] = 0
+        return df, "Data not available."
+
+
 @app.callback([Output('dataframe_eda', 'data'), Output('dataframe_rad', 'data'),
                Output(component_id='mission_description', component_property='children'),
                Output(component_id='milestone_description', component_property='children'),
                Output(component_id='light_output', component_property='children'),
-               Output(component_id='checklist_lights', component_property='options')],
+               Output(component_id='checklist_lights', component_property='options'),
+               Output(component_id='data_availability_eda', component_property='children'),
+               Output(component_id='data_availability_rad', component_property='children')],
                [Input('mission_slct', 'value')])
 
-
-
-def load_data(mission_slctd):
+def clean_and_extract_metadata(mission_slctd):
     #mission_slctd = 'Rodent Research 1 (SpaceX-4)'
     mission = mission_info[mission_info['Title'] == mission_slctd]['Mission']
     mission_description = mission_info[mission_info['Title'] == mission_slctd]['Description'].item()
     # View info
-    df_eda = pd.read_json(path + '{}_CSV.json'.format(mission.item()))
+    df_eda, data_status_eda = load_data(mission)
+    df_rad, data_status_rad = load_data(mission, True)
+    print("df_rad: {}".format(df_rad.head()))
+    print("df_eda: {}".format(df_eda.head()))
     df_eda.Controller_Time_GMT = pd.to_datetime(df_eda.Controller_Time_GMT)
-    df_rad = pd.read_json(path + '{}_Radiation_CSV.json'.format(mission.item()))
     df_rad['Accumulated_Radiation'] = df_rad['Total_Dose_mGy_d'].cumsum()
-    milestone_description = mission_milestones(df_eda)
+    if len(data_status_eda) < len(data_status_rad):
+        milestone_description = mission_milestones(df_eda)
+    elif len(data_status_eda) > len(data_status_rad):
+        milestone_description = mission_milestones(df_rad, True)
+    else:
+        milestone_description = "No data available"
     light_list = [key for key in df_eda.keys() if key[0:3] == 'Lig']
     if len(light_list) > 0:
         light_output_string = html.Strong('Display Lights')
@@ -166,7 +199,7 @@ def load_data(mission_slctd):
         light_output_string = html.Strong('')
         options = []
     return df_eda.to_json(date_format='iso', orient='split'), df_rad.to_json(date_format='iso', orient='split'), \
-    mission_description, milestone_description, light_output_string, options
+    mission_description, milestone_description, light_output_string, options, data_status_eda, data_status_rad
 
 
 
@@ -238,9 +271,6 @@ def update_homescreen(json_data, chklst_milst_val, chklst_lights_val):
 ####################################################################
 ####################################################################
 
-
-
-
 @app.callback(
     [Output(component_id='gcr_map', component_property='figure'),
     Output(component_id='saa_map', component_property='figure'),
@@ -251,7 +281,6 @@ def update_homescreen(json_data, chklst_milst_val, chklst_lights_val):
      Input(component_id='checklist_milestone', component_property='value'),
      Input(component_id='checklist_lights', component_property='value')]
 )
-
 
 def update_homescreen_rad(df_eda, df_rad, chklst_milst_val, chklst_lights_val):
     #mission_slctd = 'Rodent Research 1 (SpaceX-4)'
@@ -309,13 +338,17 @@ def update_homescreen_rad(df_eda, df_rad, chklst_milst_val, chklst_lights_val):
 
 
 
-def mission_milestones(df_eda):
-    milestones = pd.unique(df_eda['Mission_Milestone'])
+def mission_milestones(df, radiation = False):
+    if radiation:
+        key = 'Date'
+    else:
+        key = 'Controller_Time_GMT'
+    milestones = pd.unique(df['Mission_Milestone'])
     # Clean the stones
     info_string = "> \n\n \n \n"
     for milestone in milestones:
         if len(milestone) > 0:
-            milestone_date = df_eda[df_eda['Mission_Milestone'] == milestone]['Controller_Time_GMT'].astype(str).item()
+            milestone_date = df[df['Mission_Milestone'] == milestone][key].astype(str).item()
             #print(milestone_date)
             info_string += "> **{}** : *{}* \n\n".format(milestone, milestone_date)
     return info_string
