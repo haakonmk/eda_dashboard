@@ -140,7 +140,7 @@ def generate_table(dataframe, max_rows=10):
 
 col_eda = dbc.Col(html.Div(id = 'eda_table'), width = 4)
 col_summary = dbc.Col(html.Div(html.Div(id = 'summary_table', style={'width': '45%', 'display': 'inline-block'}),style={'display': 'flex'}))
-colMission = dbc.Col(html.Div([ dbc.Card(
+colMission =  dbc.Col(html.Div([ dbc.Card(
                 [
                     dbc.CardHeader("Mission Milestone Dates", style = {'textAlign' : 'center'}),
                     dbc.CardBody(
@@ -149,7 +149,8 @@ colMission = dbc.Col(html.Div([ dbc.Card(
                     ),
                 ]
             )
-            ]), width = 3)
+            ]), width = 4)
+
 
 col_rad = dbc.Col(html.Div(id = 'rad_table'), width = 4)
 

@@ -22,18 +22,18 @@ path = "/Users/hakonkolsto/Documents/django/djangoProject/eda/polls/input_files/
 mission_info = pd.read_csv(path + "mission_info.csv")
 mission_slctd = 'Rodent Research 1 (SpaceX-4)'
 mission = mission_info[mission_info['Title'] == mission_slctd]['Mission']
+
 df_eda = pd.read_json(path + '{}_CSV.json'.format(mission.item()))
 df_rad = pd.read_json(path + '{}_Radiation_CSV.json'.format(mission.item()))
 
-
-df_eda_init = pd.read_json(path + '{}_CSV.json'.format(mission.item()))
-df_rad_init = pd.read_json(path + '{}_Radiation_CSV.json'.format(mission.item()))
+df_eda_init = df_eda.head()
+df_rad_init = df_rad.head()
 
 #radiation_files = sorted(glob.glob(path + "RR*_Ra*_CSV.json"), key=numericalSort)
 #eda_files = sorted(glob.glob(path + "RR?_CSV.json"), key=numericalSort)
 light_listInit = [key for key in df_eda.keys() if key[0:3] == 'Lig']
 default_options = [{"label": light , "value": light} for light in light_listInit]
-
+default_milestone_options = [{"label": "  Mission Milestones", "value": "true"}]
 
 # Callback connects the Dash components to Plotly graphs
 
@@ -43,7 +43,7 @@ col = dbc.Col(html.Div([
                      value='Rodent Research 1 (SpaceX-4)',
                      multi=False,
                      style={'width': "60%", 'justify-content': 'center'},
-                     ), html.H5(id = 'data_availability_eda'),
+                     ), html.H5(id = 'data_status_eda'),
         html.Div(children=html.Strong('Mission Description'), style = {'textAlign' : 'center', 'backgroundColor': '#c2ccd6'}),
         html.Div(id='mission_description', children=[], style = {'textAlign' : 'left', 'backgroundColor': '#f0f2f5'}), #e1e5ea
         #html.Div(id='mission_description', children=[]),
@@ -55,12 +55,9 @@ colMission = dbc.Col(html.Div([ dbc.Card(
                     dbc.CardHeader("Mission Milestone Dates", style = {'textAlign' : 'center'}),
                     dbc.CardBody(
                         [dcc.Markdown(id='milestone_description', children=[], style = {'textAlign' : 'center'}), #e1e5ea
-                        html.Div(children=html.Strong('Display Milestone'), style = {'textAlign' : 'center'}),
+                        html.Div(id ="milestone_output", style = {'textAlign' : 'center'}),
                         dcc.Checklist(
                             id="checklist_milestone",
-                            options=[
-                                {"label": "  Mission Milestones", "value": "true"},
-                            ],
                             inline=True,
                             style = {'textAlign' : 'center'},
                             labelStyle={"display": "block"},
@@ -135,14 +132,26 @@ app.layout = html.Div(
         dbc.Row([colMission, col4]),# justify="center"),
         html.Br(),
         html.H3(children='Radiation Data'),
-        html.H5(id = 'data_availability_rad'),
+        html.H5(id = 'data_status_rad'),
         dbc.Row([col1_rad, col2_rad, col3_rad]),
         html.Br(),
         dbc.Row([col4_rad, col5_rad ]),
         dcc.Store(id='dataframe_eda'), #Store the data
         dcc.Store(id='dataframe_rad'), #Store the data
+        dcc.Store(id='data_availability_eda'), #Store the data
+        dcc.Store(id='data_availability_rad'), #Store the data
     ]
 )
+
+
+
+@app.callback([Output(component_id='data_status_eda', component_property='children'),
+                Output(component_id='data_status_rad', component_property='children')],
+                [Input(component_id='data_availability_eda', component_property='data'),
+                Input(component_id='data_availability_rad', component_property='data')]
+                )
+def display_data_status(data_availability_eda,data_availability_rad):
+    return data_availability_eda, data_availability_rad
 
 
 # Checks the data availability
@@ -164,13 +173,17 @@ def load_data(mission, radiation = False):
         return df, "Data not available."
 
 
+
+
 @app.callback([Output('dataframe_eda', 'data'), Output('dataframe_rad', 'data'),
                Output(component_id='mission_description', component_property='children'),
                Output(component_id='milestone_description', component_property='children'),
                Output(component_id='light_output', component_property='children'),
                Output(component_id='checklist_lights', component_property='options'),
-               Output(component_id='data_availability_eda', component_property='children'),
-               Output(component_id='data_availability_rad', component_property='children')],
+               Output(component_id='milestone_output', component_property='children'),
+               Output(component_id='checklist_milestone', component_property='options'),
+               Output(component_id='data_availability_eda', component_property='data'),
+               Output(component_id='data_availability_rad', component_property='data')],
                [Input('mission_slct', 'value')])
 
 def clean_and_extract_metadata(mission_slctd):
@@ -180,17 +193,27 @@ def clean_and_extract_metadata(mission_slctd):
     # View info
     df_eda, data_status_eda = load_data(mission)
     df_rad, data_status_rad = load_data(mission, True)
-    print("df_rad: {}".format(df_rad.head()))
-    print("df_eda: {}".format(df_eda.head()))
     df_eda.Controller_Time_GMT = pd.to_datetime(df_eda.Controller_Time_GMT)
     df_rad['Accumulated_Radiation'] = df_rad['Total_Dose_mGy_d'].cumsum()
     if len(data_status_eda) < len(data_status_rad):
         milestone_description = mission_milestones(df_eda)
     elif len(data_status_eda) > len(data_status_rad):
         milestone_description = mission_milestones(df_rad, True)
+    elif len(data_status_eda) == 0 and len(data_status_rad)== 0:
+        milestone_description = mission_milestones(df_eda)
     else:
         milestone_description = "No data available"
     light_list = [key for key in df_eda.keys() if key[0:3] == 'Lig']
+    if df_eda[df_eda.keys()[0]].dt.year[0]== 1970:
+        light_list = []
+
+    if df_eda[df_eda.keys()[0]].dt.year[0]== 1970 and df_rad[df_rad.keys()[0]].dt.year[0]== 1970:
+        milestone_output_string = html.Strong('')
+        checklist_milestone_val = []
+    else:
+        milestone_output_string = html.Strong('Display Milestone')
+        checklist_milestone_val = default_milestone_options
+
     if len(light_list) > 0:
         light_output_string = html.Strong('Display Lights')
         options = [{"label": light , "value": light} for light in light_list]
@@ -199,31 +222,26 @@ def clean_and_extract_metadata(mission_slctd):
         light_output_string = html.Strong('')
         options = []
     return df_eda.to_json(date_format='iso', orient='split'), df_rad.to_json(date_format='iso', orient='split'), \
-    mission_description, milestone_description, light_output_string, options, data_status_eda, data_status_rad
+    mission_description, milestone_description, light_output_string, options, milestone_output_string, \
+    checklist_milestone_val, data_status_eda, data_status_rad
 
 
 
 @app.callback([Output(component_id='temperature_map', component_property='figure'),
             Output(component_id='co2_map', component_property='figure'),
             Output(component_id='rh1_map', component_property='figure')],
-            [Input('dataframe_eda', 'data'), Input(component_id='checklist_milestone', component_property='value'),
-            Input(component_id='checklist_lights', component_property='value')]
+            [Input('dataframe_eda', 'data'),
+            Input(component_id='checklist_milestone', component_property='value'),
+            Input(component_id='checklist_lights', component_property='value'),
+            Input(component_id='data_availability_eda', component_property='data')]
             )
 
 
-def update_homescreen(json_data, chklst_milst_val, chklst_lights_val):
+def update_homescreen(json_data, chklst_milst_val, chklst_lights_val, data_status_eda):
     #mission_slctd = 'Rodent Research 1 (SpaceX-4)'
     df_eda = pd.read_json(json_data, orient='split')
-    light_list = [key for key in df_eda.keys() if key[0:3] == 'Lig']
-    # Some missions don't have Lights On/Off -
-    if len(light_list) > 0:
-        light_output_string = html.Strong('Display Lights')
-        options = [{"label": light , "value": light} for light in light_list]
-    else:
-        chklst_lights_val = []
-        light_output_string = html.Strong('')
-        options = []
     fig1 = px.line(data_frame=df_eda, x='Controller_Time_GMT', y=['Temp_degC_Ground', 'Temp_degC_ISS'], template='plotly_dark')
+    
     fig1.update_xaxes(nticks=10)
     fig1.update_layout(title_text='Temperature', title_x=0.5,
                         yaxis={"title": "Degrees [C]"}, legend={"title":"Location"},
@@ -255,11 +273,13 @@ def update_homescreen(json_data, chklst_milst_val, chklst_lights_val):
                                         hovertemplate = t.hovertemplate.replace(t.name, newnames[t.name])))
 
     if chklst_lights_val != None:
-        for lght in chklst_lights_val:
-            draw_rectangel_light(df_eda, lght, [fig1, fig2, fig3])
+        if len(data_status_eda) == 0:
+            for lght in chklst_lights_val:
+                draw_rectangel_light(df_eda, lght, [fig1, fig2, fig3])
 
     if chklst_milst_val == ['true']:
-        draw_vertical_lines_mission_chcklist(df_eda, [fig1, fig2, fig3])
+        if len(data_status_eda) == 0:
+            draw_vertical_lines_mission_chcklist(df_eda, [fig1, fig2, fig3])
 
     return fig1, fig2, fig3
 
@@ -279,10 +299,12 @@ def update_homescreen(json_data, chklst_milst_val, chklst_lights_val):
     Output(component_id='acc_map', component_property='figure')],
      [Input('dataframe_eda', 'data'), Input('dataframe_rad', 'data'),
      Input(component_id='checklist_milestone', component_property='value'),
-     Input(component_id='checklist_lights', component_property='value')]
+     Input(component_id='checklist_lights', component_property='value'),
+     Input(component_id='data_availability_rad', component_property='data'),
+     Input(component_id='data_availability_eda', component_property='data')]
 )
 
-def update_homescreen_rad(df_eda, df_rad, chklst_milst_val, chklst_lights_val):
+def update_homescreen_rad(df_eda, df_rad, chklst_milst_val, chklst_lights_val, data_status_rad, data_status_eda):
     #mission_slctd = 'Rodent Research 1 (SpaceX-4)'
     df_eda = pd.read_json(df_eda, orient='split')
     df_rad = pd.read_json(df_rad, orient='split')
@@ -327,11 +349,13 @@ def update_homescreen_rad(df_eda, df_rad, chklst_milst_val, chklst_lights_val):
 
 
     if chklst_lights_val != None:
-        for lght in chklst_lights_val:
-            draw_rectangel_light(df_eda, lght, [fig1, fig2, fig3,fig4, fig5])
+        if len(data_status_rad) == 0 and len(data_status_eda) == 0:
+            for lght in chklst_lights_val:
+                draw_rectangel_light(df_eda, lght, [fig1, fig2, fig3,fig4, fig5])
 
     if chklst_milst_val == ['true']:
-        draw_vertical_lines_mission_chcklist(df_eda, [fig1, fig2, fig3,fig4, fig5])
+        if len(data_status_rad) == 0:
+            draw_vertical_lines_mission_chcklist(df_rad, [fig1, fig2, fig3,fig4, fig5], True)
 
     return fig1, fig2, fig3, fig4, fig5
 
@@ -349,21 +373,23 @@ def mission_milestones(df, radiation = False):
     for milestone in milestones:
         if len(milestone) > 0:
             milestone_date = df[df['Mission_Milestone'] == milestone][key].astype(str).item()
-            #print(milestone_date)
             info_string += "> **{}** : *{}* \n\n".format(milestone, milestone_date)
     return info_string
 
 
 
-def draw_vertical_lines_mission_chcklist(df_eda, figList):
-    milestones = pd.unique(df_eda['Mission_Milestone'])
+def draw_vertical_lines_mission_chcklist(df, figList, radiation = False):
+    milestones = pd.unique(df['Mission_Milestone'])
+    if radiation:
+        key = 'Date'
+    else:
+        key = 'Controller_Time_GMT'
     for milestone in milestones:
         if len(milestone) > 0:
-            milestone_date = df_eda[df_eda['Mission_Milestone'] == milestone]['Controller_Time_GMT'].astype(str).item()
+            milestone_date = df[df['Mission_Milestone'] == milestone][key].astype(str).item()
             for fig in figList:
                 fig.add_vline(x=milestone_date, line_width=2, line_dash="dash", line_color="orange")# for milestone_date in milestone_dates]
                 fig.add_annotation(x=milestone_date, y =1 , yref="paper", text=milestone, bgcolor = "orange", hovertext = milestone_date)
-
 
 
 def draw_rectangel_light(df, lght, figList):
