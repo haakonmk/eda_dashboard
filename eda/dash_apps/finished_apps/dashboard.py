@@ -241,7 +241,7 @@ def update_homescreen(json_data, chklst_milst_val, chklst_lights_val, data_statu
     #mission_slctd = 'Rodent Research 1 (SpaceX-4)'
     df_eda = pd.read_json(json_data, orient='split')
     fig1 = px.line(data_frame=df_eda, x='Controller_Time_GMT', y=['Temp_degC_Ground', 'Temp_degC_ISS'], template='plotly_dark')
-    
+
     fig1.update_xaxes(nticks=10)
     fig1.update_layout(title_text='Temperature', title_x=0.5,
                         yaxis={"title": "Degrees [C]"}, legend={"title":"Location"},
