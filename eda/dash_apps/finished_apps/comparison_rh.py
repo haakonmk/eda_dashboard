@@ -139,9 +139,6 @@ def update_dataframe(checklist):
 
 
 
-
-
-
 @app.callback(
     [Output(component_id='temperature_map_ground', component_property='figure'),
     Output(component_id='temperature_map_iss', component_property='figure')],
