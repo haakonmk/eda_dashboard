@@ -36,7 +36,7 @@ df_rad_init = df_rad.head()
 
 colMission = dbc.Col(html.Div([ dbc.Card(
                 [
-                    dbc.CardHeader("Missions", style = {'textAlign' : 'center'}),
+                    dbc.CardHeader("Mission Selection", style = {'textAlign' : 'center'}),
                     dbc.CardBody(
                         [html.Div(children=html.Strong('Select Missions to Compare'), style = {'textAlign' : 'center'}),
                         dcc.Checklist(
@@ -90,7 +90,6 @@ app.layout = html.Div(
     ]
 )
 
-
 store_checklist = []
 no_data_list = []
 dict_store = {}
@@ -108,7 +107,7 @@ def load_data(mission):
         return df, "Data not available."
 
 def clean_data(mission_id):
-    """Returns temperature (ISS/Ground) and days after launch for a given mission"""
+    """Returns radiation data and days after launch for a given mission"""
     df_launch, data_status_rad = load_data(mission_id)
     df_launch.set_index('Date', inplace=True)
     df_launch['Accumulated_Radiation'] = df_launch['Total_Dose_mGy_d'].cumsum()
@@ -130,25 +129,20 @@ def update_dataframe(checklist):
     for mission_id in updated_checklist:
         if mission_id not in dict_store.keys():
             mission_dict, data_status_rad = clean_data(mission_id)
-            print("{} {}".format(len(data_status_rad), mission_id ))
             if len(data_status_rad) == 0:
                 dict_store.update(mission_dict)
             else:
                 if mission_id not in no_data_list:
                     no_data_list.append(mission_id)
-                    #updated_checklist.remove(mission_id)
-                    #print("AF rem {}".format(updated_checklist))
         else:
             print('Data already loaded!')
     if len(no_data_list) > 0:
         for mission_id in no_data_list:
-            print(mission_id)
             try:
                 store_checklist.remove(mission_id)
                 updated_checklist.remove(mission_id)
             except ValueError:
                 continue
-    print('no_data_list: {}'.format(no_data_list))
     return updated_checklist, dict_store, np.unique(no_data_list).tolist()
 
 @app.callback(

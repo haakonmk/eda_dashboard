@@ -17,7 +17,7 @@ def numericalSort(value):
 
 
 app = DjangoDash('EDA', external_stylesheets= [dbc.themes.BOOTSTRAP])
-path = "/Users/hakonkolsto/Documents/django/djangoProject/eda/polls/input_files/"
+path = "polls/input_files/"
 
 # Just initialize some stuff
 mission_info = pd.read_csv(path + "mission_info.csv")

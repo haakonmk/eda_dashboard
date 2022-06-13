@@ -222,41 +222,6 @@ colMission = html.Div([
             ]),
         ])
 
-"""
-colMission = [
-                dbc.Col(html.Div([html.Div(id = 'summary_table')]), width = 4),
-                dbc.Col(html.Div([
-                        dcc.Tabs([
-                            dcc.Tab(label = "Mission Overview", style = {'textAlign' : 'center'}, children=[
-
-                                dbc.Card(
-                                        [
-                                            dbc.CardBody(
-                                                [dcc.Markdown(id='mission_description', children=[], style = {'textAlign' : 'center'}), #e1e5ea
-                                                ]
-                                            ),
-                                        ]
-                                    )
-                            ]),
-                            dcc.Tab(label = "Mission Milestone Dates", style = {'textAlign' : 'center'}, children=[
-                                dbc.Card(
-                                        [
-                                            dbc.CardBody(
-                                                [dcc.Markdown(id='milestone_description', children=[], style = {'textAlign' : 'center'}), #e1e5ea
-                                                ]
-                                            ),
-                                        ]
-                                    )
-                                ]),
-                            ], colors={
-                                        "border": "#AFD7E8",
-                                        "primary": "grey",
-#                                        "background": '#129AFF'
-                                        },)
-                ]), width = 4)
-            ]
-
-"""
 
 app.layout = html.Div([
     dbc.Row([col]),
