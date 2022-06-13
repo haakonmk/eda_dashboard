@@ -1,4 +1,4 @@
-# eda_dashboard
+# Environmental Data Application
 
 This is the Environmental Data Application for GeneLab.
 
