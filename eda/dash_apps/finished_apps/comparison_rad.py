@@ -20,7 +20,7 @@ def numericalSort(value):
 
 
 app = DjangoDash('Comparison_Radiation', external_stylesheets= [dbc.themes.BOOTSTRAP])
-path = "/Users/hakonkolsto/Documents/django/djangoProject/eda/polls/input_files/"
+path = "polls/input_files/"
 
 mission_info = pd.read_csv(path + "mission_info.csv")
 mission_slctd = 'Rodent Research 1 (SpaceX-4)'
